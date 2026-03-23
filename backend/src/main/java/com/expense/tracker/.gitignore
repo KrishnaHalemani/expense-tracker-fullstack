@@ -1,0 +1,6 @@
+target/
+.idea/
+*.log
+*.class
+.env
+application.properties
