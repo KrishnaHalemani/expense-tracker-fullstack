@@ -45,4 +45,16 @@ public class ExpenseService {
         }
         return new ExpenseSummaryDTO(total, categoryMap);
     }
+    public Expense updateExpense(Long id, Expense newExpense){
+
+        Expense existing = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Expense not found"));
+
+        existing.setTitle(newExpense.getTitle());
+        existing.setAmount(newExpense.getAmount());
+        existing.setCategory(newExpense.getCategory());
+        existing.setDate(newExpense.getDate());
+
+        return repository.save(existing);
+    }
 }

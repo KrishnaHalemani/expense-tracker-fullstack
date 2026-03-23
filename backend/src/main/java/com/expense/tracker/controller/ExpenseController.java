@@ -35,4 +35,8 @@ public class ExpenseController {
     public ExpenseSummaryDTO getSummary(){
         return service.getSummary();
     }
+    @PutMapping("/{id}")
+    public Expense updateExpense(@PathVariable Long id, @RequestBody Expense expense){
+        return service.updateExpense(id, expense);
+    }
 }
