@@ -1,5 +1,6 @@
 package com.expense.tracker.controller;
 
+import com.expense.tracker.dto.ExpenseSummaryDTO;
 import com.expense.tracker.entity.Expense;
 import com.expense.tracker.service.ExpenseService;
 import org.springframework.web.bind.annotation.*;
@@ -26,4 +27,12 @@ public class ExpenseController {
         return service.getAllExpenses();
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteExpense(@PathVariable Long id){
+        service.deleteExpense(id);
+    }
+    @GetMapping("/summary")
+    public ExpenseSummaryDTO getSummary(){
+        return service.getSummary();
+    }
 }
