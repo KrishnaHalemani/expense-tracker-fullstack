@@ -5,6 +5,8 @@ import com.expense.tracker.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.expense.tracker.security.JwtUtil;
+
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin
@@ -13,9 +15,12 @@ public class AuthController {
 
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public AuthController(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    private final JwtUtil jwtUtil;
+
+    public AuthController(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
         this.userRepository=userRepository;
         this.passwordEncoder=passwordEncoder;
+        this.jwtUtil=jwtUtil;
     }
 
     @GetMapping("/test")
@@ -50,7 +55,7 @@ public class AuthController {
             throw new RuntimeException("Invalid Password");
         }
 
-        return "Login Success";
+        return jwtUtil.generateToken(user.getEmail());
     }
 
 
