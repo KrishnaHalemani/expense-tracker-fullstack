@@ -331,7 +331,7 @@ th {
 .full-width {
   grid-column: span 2;
 }
-.filter-panel{
+ .filter-panel{
  display:flex;
  gap:10px;
  margin-bottom:20px;
